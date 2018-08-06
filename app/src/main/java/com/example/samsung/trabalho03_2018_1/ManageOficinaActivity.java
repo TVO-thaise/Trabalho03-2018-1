@@ -2,57 +2,121 @@ package com.example.samsung.trabalho03_2018_1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.samsung.trabalho03_2018_1.model.Oficina;
 
-import java.util.ArrayList;
 
-public class ManageOficinaActivity extends AppCompatActivity implements ClickRecyclerViewListener {
+public class ManageOficinaActivity extends AppCompatActivity {
+
+    private EditText tNome, tRua, tBairro, tMunicipio;
+    private Button btnSalvar, btnAlterar, btnDeletar;
+    private ConstraintLayout layout;
+
+    private int id;
+    private Oficina oficina;
+    private Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_oficina_list);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarr);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_manage_oficina);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabb);
-        fab.setOnClickListener(new View.OnClickListener() {
+        this.bind();
+
+        Intent intent = this.getIntent();
+        this.id = (int) intent.getSerializableExtra("id");
+        this.realm = Realm.getDefaultInstance();
+
+        if(this.id != 0){
+
+            this.btnSalvar.setEnabled(false);
+            this.oficina = realm.where(Oficina.class).equalTo("id",this.id).findFirst();
+
+            this.tNome.setText(this.oficina.getNome());
+            this.tRua.setText(this.oficina.getRua());
+            this.tBairro.setText(this.oficina.getBairro());
+            this.tMunicipio.setText(this.oficina.getMunicipio());
+
+        }else{
+
+            this.btnDeletar.setEnabled(false);
+            this.btnAlterar.setEnabled(false);
+        }
+
+        this.btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(OficinaListaActivity.this, ManageOficinaActivity.class);
-                startActivity(intent);
+                ManageOficinaActivity.this.salvar();
+            }
+        });
+
+
+        this.btnAlterar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ManageOficinaActivity.this.alterar();
+            }
+        });
+
+        this.btnDeletar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ManageOficinaActivity.this.deletar();
             }
         });
     }
 
-    protected void onResume(){
-        super.onResume();
-        RecyclerView recyclerView = findViewById(R.id.rvOficinas);
-        recyclerView.setAdapter(new OficinaAdapter(this.getOficinas(),this,this));
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    private void bind(){
+        this.tNome = findViewById(R.id.tNome);
+        this.tRua = findViewById(R.id.tRua);
+        this.tBairro = findViewById(R.id.tBairro);
+        this.tMunicipio = findViewById(R.id.tMunicipio);
+        this.btnSalvar = findViewById(R.id.btnSalvar);
+        this.btnAlterar = findViewById(R.id.btnAlterar);
+        this.btnDeletar = findViewById(R.id.btnDeletar);
     }
 
+    private void salvar() {
 
-    public Lista<Oficina> getOficinas(){
+        int nextID = 1;
 
-        ArrayList<Oficina> lista = new ArrayList<>();
+        if(this.realm.where(Oficina.class).max("id") != null){
+            nextID = this.realm.where(Mecanico.class).max("id").intValue() + 1;
+        }
 
-        Oficina oficina = new Oficina();
-        oficina.setNome("Nova");
-        oficina.setRua("Marechal Deodoro");
+        this.realm.beginTransaction();
 
-        list.add(oficina);
+        Oficina o = new Oficina();
+        o.setId(nextID);
 
-        return lista;
+        this.populate(o);
+
+        this.realm.copyToRealm(o);
+        this.realm.commitTransaction();
+        this.realm.close();
+
+        Toast.makeText(this,"Oficina Cadastrada!", Toast.LENGTH_SHORT).show();
+        this.finish();
     }
 
-    @Override
-    public void onClick(Object object) {
+    private void populate(Oficina oficina){
+        oficina.setNome(this.tNome.getText().toString());
+        oficina.setRua(this.tRua.getText().toString());
+        oficina.setBairro(this.tBairro.getText().toString());
+        oficina.setMunicipio(this.tMunicipio.getText().toString());
+    }
+
+    private void alterar(){
+
+    }
+
+    private void deletar(){
 
     }
 }

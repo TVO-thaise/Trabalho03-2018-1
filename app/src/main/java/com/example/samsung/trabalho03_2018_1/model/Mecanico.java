@@ -1,12 +1,27 @@
 package com.example.samsung.trabalho03_2018_1.model;
 
-public class Mecanico {
+import java.io.Serializable;
+
+public class Mecanico implements Serializable {
+
+
+
+    @PrimaryKey
+    private int id;
 
     private String nome, funcao, rua, bairro, dtnasc, municipio;
     private Double latitude, longitude;
 
     public Mecanico(){
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {

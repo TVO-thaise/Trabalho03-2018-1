@@ -1,12 +1,25 @@
 package com.example.samsung.trabalho03_2018_1.model;
 
-public class Oficina {
+import java.io.Serializable;
+
+public class Oficina extends RealmObject implements Serializable {
+
+    @PrimaryKey
+    private int id;
 
     private String nome, rua, bairro, municipio;
     private Double latitude, longitude;
 
     public Oficina(){
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
