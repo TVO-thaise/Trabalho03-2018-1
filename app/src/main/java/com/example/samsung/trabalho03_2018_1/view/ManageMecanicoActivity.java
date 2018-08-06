@@ -1,6 +1,8 @@
-package com.example.samsung.trabalho03_2018_1;
+package com.example.samsung.trabalho03_2018_1.view;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.samsung.trabalho03_2018_1.model.Mecanico;
+
+import java.io.IOException;
 
 public class ManageMecanicoActivity extends AppCompatActivity {
 
@@ -39,7 +43,7 @@ public class ManageMecanicoActivity extends AppCompatActivity {
 
             this.tNome.setText(this.mecanico.getNome());
             this.tFuncao.setText(this.mecanico.getFuncao());
-            this.tDtNasc.setText(this.mecanico.getDtnasc());
+            this.tDataDeNascimento.setText(this.mecanico.getDataDeNascimento());
             this.tRua.setText(this.mecanico.getRua());
             this.tBairro.setText(this.mecanico.getBairro());
             this.tMunicipio.setText(this.mecanico.getMunicipio());
@@ -92,7 +96,7 @@ public class ManageMecanicoActivity extends AppCompatActivity {
         this.realm.commitTransaction();
         this.realm.close();
 
-        Toast.makeText(this,"mecanico cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Mecânico Cadastrado!", Toast.LENGTH_SHORT).show();
         this.finish();
     }
 
@@ -112,10 +116,25 @@ public class ManageMecanicoActivity extends AppCompatActivity {
     private void populate(Mecanico mecanico){
         mecanico.setNome(this.tNome.getText().toString());
         mecanico.setFuncao(this.tFuncao.getText().toString());
-        mecanico.setDtnasc(this.tDtNasc.getText().toString());
+        mecanico.setDtNasc(this.tDtNasc.getText().toString());
         mecanico.setRua(this.tRua.getText().toString());
         mecanico.setBairro(this.tBairro.getText().toString());
         mecanico.setMunicipio(this.tMunicipio.getText().toString());
+
+        if (mecanico.getRua() != null && !mecanico.getRua().equals("")) {
+            Lista<Address> addressList = null;
+            Geocoder geocoder = new Geocoder(ManageMecanicoActivity.this);
+            try {
+                addressList = geocoder.getFromLocationName(mecanico.getRua(), 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Address address = addressList.get(0);
+            mecanico.setLatitude(address.getLatitude());
+            mecanico.setLongitude(address.getLongitude());
+        }
+
     }
 
     private void alterar() {
@@ -127,7 +146,7 @@ public class ManageMecanicoActivity extends AppCompatActivity {
         realm.commitTransaction();
         realm.close();
 
-        Toast.makeText(this,"Mecanico Alterado!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Mecânico Alterado!", Toast.LENGTH_SHORT).show();
         this.finish();
     }
 
@@ -137,9 +156,8 @@ public class ManageMecanicoActivity extends AppCompatActivity {
         realm.commitTransaction();
         realm.close();
 
-        Toast.makeText(this,"Mecanico Excluido!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Mecânico Excluído!", Toast.LENGTH_SHORT).show();
         this.finish();
     }
-
 
 }

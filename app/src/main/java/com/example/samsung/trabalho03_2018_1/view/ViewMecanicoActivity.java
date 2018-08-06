@@ -1,4 +1,4 @@
-package com.example.samsung.trabalho03_2018_1;
+package com.example.samsung.trabalho03_2018_1.view;
 
 import android.Manifest;
 import android.content.Intent;

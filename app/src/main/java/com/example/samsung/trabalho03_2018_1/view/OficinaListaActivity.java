@@ -1,4 +1,4 @@
-package com.example.samsung.trabalho03_2018_1;
+package com.example.samsung.trabalho03_2018_1.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+
+import com.example.samsung.trabalho03_2018_1.ClickRecyclerViewListener;
+import com.example.samsung.trabalho03_2018_1.adapter.OficinaAdapter;
+import com.example.samsung.trabalho03_2018_1.view.ManageOficinaActivity;
 
 public class OficinaListaActivity extends AppCompatActivity implements ClickRecyclerViewListener {
 

@@ -1,4 +1,4 @@
-package com.example.samsung.trabalho03_2018_1;
+package com.example.samsung.trabalho03_2018_1.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.samsung.trabalho03_2018_1.ClickRecyclerViewListener;
 import com.example.samsung.trabalho03_2018_1.model.Oficina;
 
 public class OficinaAdapter extends RecyclerView.Adapter {

@@ -7,9 +7,7 @@ public class Config extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         Realm.init(this);
-
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .name("0320181.realm")
                 .schemaVersion(0)
@@ -17,4 +15,5 @@ public class Config extends Application {
                 .build();
         Realm.setDefaultConfiguration(config);
     }
+
 }

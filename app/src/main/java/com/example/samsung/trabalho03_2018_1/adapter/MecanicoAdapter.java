@@ -1,4 +1,4 @@
-package com.example.samsung.trabalho03_2018_1;
+package com.example.samsung.trabalho03_2018_1.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.samsung.trabalho03_2018_1.ClickRecyclerViewListener;
+import com.example.samsung.trabalho03_2018_1.view.ViewMecanicoActivity;
 import com.example.samsung.trabalho03_2018_1.model.Mecanico;
 
 public class MecanicoAdapter extends RecyclerView.Adapter{
