@@ -40,7 +40,7 @@ public class ManageOficinaActivity extends AppCompatActivity implements ClickRec
 
     public Lista<Oficina> getOficinas(){
 
-        ArrayList<Oficina> list = new ArrayList<>();
+        ArrayList<Oficina> lista = new ArrayList<>();
 
         Oficina oficina = new Oficina();
         oficina.setNome("Nova");
