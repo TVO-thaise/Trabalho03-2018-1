@@ -1,5 +1,6 @@
 package com.example.samsung.trabalho03_2018_1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -19,8 +20,8 @@ public class MecanicoListaActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(MecanicoListaActivity.this, ManageMecanicoActivity.class);
+                startActivity(intent);
             }
         }
     }

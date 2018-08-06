@@ -19,7 +19,7 @@
 
         <activity
             android:name=".MecanicoListaActivity"
-            android:label="@string/title_activity_mecanico_list"
+            android:label="@string/title_activity_mecanico_lista"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".OficinaListaActivity"
@@ -27,6 +27,9 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+
+        <activity android:name=".ManageMecanicoActivity" android:label="ManageMecanicoActivity" />
+        <activity android:name=".ManageOficinaActivity"></activity>
 
     </application>
 
