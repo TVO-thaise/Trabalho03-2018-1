@@ -10,7 +10,7 @@ public class OficinaListaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_oficina_list);
+        setContentView(R.layout.activity_oficina_lista);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarr);
         setSupportActionBarb(toolbar);
 
