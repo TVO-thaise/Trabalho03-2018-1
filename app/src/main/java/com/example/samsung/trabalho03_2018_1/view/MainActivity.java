@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,9 +22,7 @@ public class MainActivity extends AppCompatActivity {
         this.btnMecanico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this,"teste" ,Toast.LENGTH_LONG).show();
-
-                Intent intent = new Intent(MainActivity.this, MecanicoListaActivity.class);
+                Intent intent = new Intent(MainActivity.this, MecanicoListActivity.class);
                 startActivity(intent);
             }
         });
@@ -32,11 +30,10 @@ public class MainActivity extends AppCompatActivity {
         this.btnOficina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "teste", Toast.LENGTH_LONG).show();
-
-                Intent intent = new Intent(MainActivity.this, OficinaListaActivity.class);
+                Intent intent = new Intent(MainActivity.this, OficinaListActivity.class);
                 startActivity(intent);
             }
         });
+
     }
 }

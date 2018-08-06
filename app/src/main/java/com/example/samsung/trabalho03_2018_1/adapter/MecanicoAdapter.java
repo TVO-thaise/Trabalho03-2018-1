@@ -16,12 +16,12 @@ import com.example.samsung.trabalho03_2018_1.model.Mecanico;
 
 public class MecanicoAdapter extends RecyclerView.Adapter{
 
-    private Lista<Mecanico> mecanicos;
+    private List<Mecanico> mecanicos;
     private Context ctx;
     private static ClickRecyclerViewListener clickRecyclerViewListener;
 
 
-    public MecanicoAdapter(Lista<Mecanico> mecanicos, Context ctx, ClickRecyclerViewListener clickRecyclerViewListener){
+    public MecanicoAdapter(List<Mecanico> mecanicos, Context ctx, ClickRecyclerViewListener clickRecyclerViewListener){
         this.mecanicos = mecanicos;
         this.ctx = ctx;
         this.clickRecyclerViewListener = clickRecyclerViewListener;
